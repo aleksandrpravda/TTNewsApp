@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Document" representedClassName="Document" syncable="YES" codeGenerationType="class">
+        <attribute name="pubDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="publishedAt" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="pushed" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="secondTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="withBanners" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="document" inverseEntity="Image" syncable="YES"/>
+        <relationship name="page" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Page" inverseName="documents" inverseEntity="Page" syncable="YES"/>
+        <relationship name="source" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Source" inverseName="document" inverseEntity="Source" syncable="YES"/>
+        <relationship name="tag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="document" inverseEntity="Tag" syncable="YES"/>
+    </entity>
+    <entity name="Image" representedClassName="Image" syncable="YES" codeGenerationType="class">
+        <attribute name="caption" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="credit" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="display" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="elarge_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="large_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="originalHeight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="originalWidth" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="show" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="small_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wh_165_110_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wh_300_200_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wh_405_270_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wh_615_410_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wh_810_540_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wh_1245_500_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wh_1245_710_url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="document" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="image" inverseEntity="Document" syncable="YES"/>
+        <relationship name="preference" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Preference" inverseName="image" inverseEntity="Preference" syncable="YES"/>
+        <relationship name="tag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="image" inverseEntity="Tag" syncable="YES"/>
+    </entity>
+    <entity name="Page" representedClassName="Page" syncable="YES" codeGenerationType="class">
+        <attribute name="collection" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
+        <attribute name="hasNext" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="number" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="documents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Document" inverseName="page" inverseEntity="Document" syncable="YES"/>
+    </entity>
+    <entity name="Preference" representedClassName="Preference" syncable="YES" codeGenerationType="class">
+        <attribute name="adsShow" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="layout" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reactionsShow" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="preference" inverseEntity="Image" syncable="YES"/>
+        <relationship name="tag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="preference" inverseEntity="Tag" syncable="YES"/>
+    </entity>
+    <entity name="Source" representedClassName="Source" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="document" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="source" inverseEntity="Document" syncable="YES"/>
+    </entity>
+    <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="show" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="document" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="tag" inverseEntity="Document" syncable="YES"/>
+        <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="tag" inverseEntity="Image" syncable="YES"/>
+        <relationship name="preference" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Preference" inverseName="tag" inverseEntity="Preference" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Page" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Document" positionX="452.171875" positionY="265.33984375" width="128" height="223"/>
+        <element name="Tag" positionX="190.6640625" positionY="457.91796875" width="128" height="133"/>
+        <element name="Source" positionX="265.76953125" positionY="173.5859375" width="128" height="73"/>
+        <element name="Preference" positionX="15.94140625" positionY="624.5625" width="129.71484375" height="135"/>
+        <element name="Image" positionX="-304.79296875" positionY="182.92578125" width="128" height="328"/>
+    </elements>
+</model>
