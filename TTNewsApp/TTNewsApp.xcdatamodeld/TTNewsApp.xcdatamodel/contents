@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Document" representedClassName="Document" syncable="YES" codeGenerationType="class">
+        <attribute name="documentType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="full" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="fullWidth" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="modifiedAt" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="pubDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="publishedAt" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="pushed" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -11,6 +15,7 @@
         <attribute name="withBanners" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="document" inverseEntity="Image" syncable="YES"/>
         <relationship name="page" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Page" inverseName="documents" inverseEntity="Page" syncable="YES"/>
+        <relationship name="preferences" optional="YES" toMany="YES" minCount="2" maxCount="2" deletionRule="Nullify" ordered="YES" destinationEntity="Preference" inverseName="document" inverseEntity="Preference" syncable="YES"/>
         <relationship name="source" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Source" inverseName="document" inverseEntity="Source" syncable="YES"/>
         <relationship name="tag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="document" inverseEntity="Tag" syncable="YES"/>
     </entity>
@@ -44,13 +49,18 @@
     <entity name="Preference" representedClassName="Preference" syncable="YES" codeGenerationType="class">
         <attribute name="adsShow" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="layout" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reactionsShow" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="document" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="preferences" inverseEntity="Document" syncable="YES"/>
         <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="preference" inverseEntity="Image" syncable="YES"/>
         <relationship name="tag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="preference" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Source" representedClassName="Source" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quote" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="trust" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="document" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="source" inverseEntity="Document" syncable="YES"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
@@ -62,11 +72,11 @@
         <relationship name="preference" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Preference" inverseName="tag" inverseEntity="Preference" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Document" positionX="452.171875" positionY="265.33984375" width="128" height="300"/>
+        <element name="Image" positionX="-304.79296875" positionY="182.92578125" width="128" height="330"/>
         <element name="Page" positionX="-63" positionY="-18" width="128" height="103"/>
-        <element name="Document" positionX="452.171875" positionY="265.33984375" width="128" height="223"/>
-        <element name="Tag" positionX="190.6640625" positionY="457.91796875" width="128" height="133"/>
-        <element name="Source" positionX="265.76953125" positionY="173.5859375" width="128" height="73"/>
-        <element name="Preference" positionX="15.94140625" positionY="624.5625" width="129.71484375" height="135"/>
-        <element name="Image" positionX="-304.79296875" positionY="182.92578125" width="128" height="328"/>
+        <element name="Preference" positionX="15.94140625" positionY="624.5625" width="129.71484375" height="165"/>
+        <element name="Source" positionX="265.76953125" positionY="173.5859375" width="128" height="120"/>
+        <element name="Tag" positionX="190.6640625" positionY="457.91796875" width="128" height="135"/>
     </elements>
 </model>
