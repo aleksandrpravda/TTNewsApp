@@ -5,14 +5,15 @@
 import Foundation
 
 class NetworkService {
+    let meduzaUrl = "https://meduza.io/api/v3/"
     
     func news(by pageNumber: Int, completion: @escaping ([String: Any]?, Error?) -> Void)  {
-        let url = URL(string: "https://meduza.io/api/v3/search?chrono=news&page=\(pageNumber)&per_page=10&locale=ru")!
+        let url = URL(string: "\(self.meduzaUrl)search?chrono=news&page=\(pageNumber)&per_page=10&locale=ru")!
         makeRequest(by: url, completion: completion)
     }
 
     func news(by url: String, completion: @escaping ([String: Any]?, Error?) -> Void) {
-        let url = URL(string: url)!
+        let url = URL(string: "\(self.meduzaUrl)\(url)")!
         makeRequest(by: url, completion: completion)
     }
 

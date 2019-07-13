@@ -39,13 +39,77 @@ class CoreDataService: DataBaseService {
         }
     }
     
+    func fetchArticle(url: String, completion: @escaping(Error?) -> Void) {
+        self.networkService.news(by: url) { jsonDictionary, error in
+            if let error = error {
+                completion(error)
+                return
+            }
+            
+            guard let jsonDictionary = jsonDictionary else {
+                let error = NSError(domain: "", code: -1, userInfo: nil)
+                completion(error)
+                return
+            }
+            
+            let taskContext = self.persistentContainer.newBackgroundContext()
+            taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+            taskContext.undoManager = nil
+            let success = self.syncArticle(url: url, jsonDictionary: jsonDictionary, taskContext: taskContext)
+            var error: Error?
+            if !success {
+                error = NSError(domain: "", code: -2, userInfo: nil)//TODO add error
+            }
+            completion(error)
+        }
+    }
+    
+    private func syncArticle(url: String, jsonDictionary: [String: Any], taskContext: NSManagedObjectContext) -> Bool {
+        var successfull = false
+        taskContext.performAndWait {
+            let matchingArticleRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Article")
+            matchingArticleRequest.predicate = NSPredicate(format: "url in %@", argumentArray: [url])
+            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: matchingArticleRequest)
+            batchDeleteRequest.resultType = .resultTypeObjectIDs
+            
+            do {
+                let batchDeleteResult = try taskContext.execute(batchDeleteRequest) as? NSBatchDeleteResult
+                if let deletedObjectIDs = batchDeleteResult?.result as? [NSManagedObjectID] {
+                    NSManagedObjectContext.mergeChanges(
+                        fromRemoteContextSave: [NSDeletedObjectsKey: deletedObjectIDs],
+                        into: [self.persistentContainer.viewContext])
+                }
+            } catch {
+                print("Error: \(error)\nCould not batch delete existing records.")
+                return
+            }
+            
+            guard let _ = createPage(from: jsonDictionary, in: taskContext) else {
+                print("Error: Failed to create a new Article object!")
+                return
+            }
+            
+            if taskContext.hasChanges {
+                do {
+                    try taskContext.save()
+                } catch {
+                    print("Error: \(error)\nCould not save Core Data context.")
+                }
+                taskContext.reset()
+            }
+            successfull = true
+        }
+        return successfull
+    }
+    
     private func syncDocuments(pageNumber: Int, jsonDictionary: [String: Any], taskContext: NSManagedObjectContext) -> Bool {
         var successfull = false
         taskContext.performAndWait {
-            let matchingCompaniesRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Page")
-            matchingCompaniesRequest.predicate = NSPredicate(format: "number in %@", argumentArray: [pageNumber])
-
-            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: matchingCompaniesRequest)
+            let matchingPageRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Page")
+            if pageNumber > 0 {
+                matchingPageRequest.predicate = NSPredicate(format: "number in %@", argumentArray: [pageNumber])
+            }
+            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: matchingPageRequest)
             batchDeleteRequest.resultType = .resultTypeObjectIDs
 
             do {
@@ -78,6 +142,64 @@ class CoreDataService: DataBaseService {
         return successfull
     }
     
+    private func createArticle(from JSON: [String: Any], in taskContext: NSManagedObjectContext) -> Article? {
+        guard let article = NSEntityDescription.insertNewObject(forEntityName: "Article", into: taskContext) as? Article else {
+            print("Error: Failed to create a new Article object!")
+            return nil
+        }
+        let rootJSON = JSON["root"] as! [String: Any]
+        article.title = rootJSON["title"] as? String
+        article.secondTitle = rootJSON["second_title"] as? String
+        article.documentType = rootJSON["document_type"] as? String
+        article.version = rootJSON["version"] as? Int16 ?? Int16()
+        article.desc = rootJSON["description"] as? String
+        article.pushed = rootJSON["pushed"] as? Bool ?? false
+        
+        if let gallery = rootJSON["gallery"] as? [[String: Any]] {
+            for pictureJSON in gallery {
+                if let picture = createPicture(from: pictureJSON, in: taskContext) {
+                    article.addToGallery(picture)
+                }
+            }
+        }
+        
+        if let pictureJSON = rootJSON["one_picture"] as? [String: Any], let picture = createPicture(from: pictureJSON, in: taskContext) {
+            picture.article = article
+            article.onePicture = picture
+        }
+        
+        if let contentJSON = rootJSON["content"] as? [String: Any] {
+            article.layoutURL = contentJSON["layout_url"] as? String
+            if let body = contentJSON["body"] as? String, let data = body.data(using: .utf8) {
+                article.content = data
+            }
+        }
+        if let sourceJSON = JSON["source"] as? [String: Any], let source = createSource(from: sourceJSON, in: taskContext) {
+            source.article = article
+            article.source = source
+        }
+        if let tagJSON = JSON["tag"] as? [String: Any], let tag = createTag(from: tagJSON, in: taskContext) {
+            tag.article = article
+            article.tag = tag
+        }
+        if let prefsJSON = JSON["prefs"] as? [String: Any] {
+            if let outerJSON = prefsJSON["outer"] as? [String: Any], let outerPrefs = createPreference(from: outerJSON, in: taskContext) {
+                outerPrefs.article = article
+                article.addToPreferences(outerPrefs)
+            }
+            
+            if let innerJSON = prefsJSON["inner"] as? [String: Any], let innerPrefs = createPreference(from: innerJSON, in: taskContext) {
+                innerPrefs.article = article
+                article.addToPreferences(innerPrefs)
+            }
+        }
+        if let imageJSON = JSON["image"] as? [String: Any], let image = createImage(from: imageJSON, in: taskContext) {
+            article.image = image
+            image.article = article
+        }
+        return article
+    }
+    
     private func createPage(from JSON: [String: Any], in taskContext: NSManagedObjectContext) -> Page? {
         guard let page = NSEntityDescription.insertNewObject(forEntityName: "Page", into: taskContext) as? Page else {
             print("Error: Failed to create a new Page object!")
@@ -102,9 +224,9 @@ class CoreDataService: DataBaseService {
             print("Error: Failed to create a new Document object!")
             return nil
         }
-        if let tagJSON = JSON["tag"] as? [String: Any], let documentTag = createTag(from: tagJSON, in: taskContext) {
-            documentTag.document = document
-            document.tag = documentTag
+        if let tagJSON = JSON["tag"] as? [String: Any], let tag = createTag(from: tagJSON, in: taskContext) {
+            tag.document = document
+            document.tag = tag
         }
         
         if let sourceJSON = JSON["source"] as? [String: Any], let source = createSource(from: sourceJSON, in: taskContext) {
@@ -141,6 +263,24 @@ class CoreDataService: DataBaseService {
         document.full = JSON["full"] as? Bool ?? false
         document.fullWidth = JSON["full_width"] as? Bool ?? false
         return document
+    }
+    
+    private func createPicture(from JSON: [String: Any], in taskContext: NSManagedObjectContext) -> Picture? {
+        guard let picture = NSEntityDescription.insertNewObject(forEntityName: "Picture", into: taskContext) as? Picture else {
+            print("Error: Failed to create a new Image object!")
+            return nil
+        }
+        picture.smallURL = JSON["small_url"] as? String
+        picture.largeURL = JSON["large_url"] as? String
+        picture.caption = JSON["caption"] as? String
+        picture.credit = JSON["credit"] as? String
+        picture.display = JSON["display"] as? String
+        picture.originalWidth = JSON["original_width"] as? Double ?? Double()
+        picture.originalHeight = JSON["original_height"] as? Double ?? Double()
+        picture.actualHeight = JSON["actual_height"] as? Double ?? Double()
+        picture.actualWidth = JSON["actual_width"] as? Double ?? Double()
+        picture.retina = JSON["retina"] as? Bool ?? false
+        return picture
     }
     
     private func createImage(from JSON: [String: Any], in taskContext: NSManagedObjectContext) -> Image? {
