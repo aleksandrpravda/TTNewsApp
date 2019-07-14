@@ -27,7 +27,7 @@ class ArticleViewController: UIViewController, NSFetchedResultsControllerDelegat
             try controller.performFetch()
         } catch {
             let nserror = error as NSError
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            appDelegate.alertService?.errorAlert(nserror)
         }
         
         return controller
@@ -48,7 +48,9 @@ class ArticleViewController: UIViewController, NSFetchedResultsControllerDelegat
         updateText()
         self.databaseService.fetchArticle(url: self.articleURL) { error in
             if let error = error {
-                print("ViewController::viewDidLoad fetch error \(error)")//TODO add allert
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let nserror = error as NSError
+                appDelegate.alertService?.errorAlert(nserror)
             }
         }
     }

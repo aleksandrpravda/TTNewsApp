@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "TTNewsTableViewController.numberOfSections(in:):TTNewsTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.fetchedResultsController.fetchedObjects">
+            </PersistentString>
+            <PersistentString
+               value = "objects.count">
+            </PersistentString>
+            <PersistentString
+               value = "self.fetchedResultsController.sections">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TTNewsTableViewController.tableView(_:numberOfRowsInSection:):TTNewsTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.fetchedResultsController.fetchedObjects">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TTNewsTableViewController.scrollViewDidEndDecelerating(_:):TTNewsTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.refreshControl.isRefreshing">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TTNewsTableViewController.scrollViewDidScroll(_:):TTNewsTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "scrollView.contentSize.height">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in TTNewsTableViewController.fetchedResultsController.getter:TTNewsTableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "TTNewsTableViewController.tableView(_:cellForRowAt:):TTNewsTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "page.descriptions">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

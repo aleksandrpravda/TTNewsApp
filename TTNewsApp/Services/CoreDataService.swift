@@ -41,7 +41,7 @@ class CoreDataService: DataBaseService {
             let success = self.syncDocuments(pageNumber: page, jsonDictionary: jsonDictionary, taskContext: taskContext)
             var error: Error?
             if !success {
-                error = NSError(domain: "", code: -2, userInfo: nil)//TODO add error
+                error = NSError(domain: "", code: -2, userInfo: nil)
             }
             DispatchQueue.main.async {
                 completion(error)
@@ -72,7 +72,7 @@ class CoreDataService: DataBaseService {
             let success = self.syncArticle(url: url, jsonDictionary: jsonDictionary, taskContext: taskContext)
             var error: Error?
             if !success {
-                error = NSError(domain: "", code: -2, userInfo: nil)//TODO add error
+                error = NSError(domain: "", code: -2, userInfo: nil)
             }
             DispatchQueue.main.async {
                 completion(error)
@@ -172,13 +172,13 @@ class CoreDataService: DataBaseService {
         article.desc = rootJSON["description"] as? String
         article.pushed = rootJSON["pushed"] as? Bool ?? false
         
-//        if let gallery = rootJSON["gallery"] as? [[String: Any]] {
-//            for pictureJSON in gallery {
-//                if let picture = createPicture(from: pictureJSON, in: taskContext) {
-//                    article.addToGallery(picture)
-//                }
-//            }
-//        }
+        if let gallery = rootJSON["gallery"] as? [[String: Any]] {
+            for pictureJSON in gallery {
+                if let picture = createPicture(from: pictureJSON, in: taskContext) {
+                    article.addToGallery(picture)
+                }
+            }
+        }
         
         if let pictureJSON = rootJSON["one_picture"] as? [String: Any], let picture = createPicture(from: pictureJSON, in: taskContext) {
             picture.article = article

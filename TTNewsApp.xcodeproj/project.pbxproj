@@ -7,15 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		332878C322DBE12C001A1DA8 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332878C222DBE12C001A1DA8 /* AlertService.swift */; };
+		3339369622DB12910004B9DC /* TTNewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3339369422DB12910004B9DC /* TTNewsTableViewController.swift */; };
+		3339369A22DB1E3A0004B9DC /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3339369822DB1E3A0004B9DC /* NewsTableViewCell.swift */; };
+		3339369B22DB1E3A0004B9DC /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3339369922DB1E3A0004B9DC /* NewsTableViewCell.xib */; };
+		3339369E22DB3C9A0004B9DC /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3339369C22DB3C9A0004B9DC /* ArticleViewController.swift */; };
+		3339369F22DB3C9A0004B9DC /* ArticleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3339369D22DB3C9A0004B9DC /* ArticleViewController.xib */; };
 		33F9184D22D881DE007C7705 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F9184C22D881DE007C7705 /* AppDelegate.swift */; };
-		33F9184F22D881DE007C7705 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F9184E22D881DE007C7705 /* ViewController.swift */; };
-		33F9185222D881DE007C7705 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33F9185022D881DE007C7705 /* Main.storyboard */; };
 		33F9185522D881DE007C7705 /* TTNewsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 33F9185322D881DE007C7705 /* TTNewsApp.xcdatamodeld */; };
 		33F9185722D881E0007C7705 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33F9185622D881E0007C7705 /* Assets.xcassets */; };
 		33F9185A22D881E0007C7705 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33F9185822D881E0007C7705 /* LaunchScreen.storyboard */; };
 		33F9187022D88215007C7705 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F9186F22D88215007C7705 /* NetworkService.swift */; };
 		33F9187222D886E3007C7705 /* NetworkServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F9187122D886E3007C7705 /* NetworkServiceTest.swift */; };
-		33F9187822D89001007C7705 /* CoreDataContextObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F9187522D89001007C7705 /* CoreDataContextObserver.swift */; };
 		33F9187922D89001007C7705 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F9187622D89001007C7705 /* CoreDataService.swift */; };
 		33F9187A22D89001007C7705 /* DataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F9187722D89001007C7705 /* DataBaseService.swift */; };
 /* End PBXBuildFile section */
@@ -31,10 +34,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		332878C222DBE12C001A1DA8 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
+		3339369422DB12910004B9DC /* TTNewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTNewsTableViewController.swift; sourceTree = "<group>"; };
+		3339369822DB1E3A0004B9DC /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		3339369922DB1E3A0004B9DC /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
+		3339369C22DB3C9A0004B9DC /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
+		3339369D22DB3C9A0004B9DC /* ArticleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleViewController.xib; sourceTree = "<group>"; };
 		33F9184922D881DE007C7705 /* TTNewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTNewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33F9184C22D881DE007C7705 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		33F9184E22D881DE007C7705 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		33F9185122D881DE007C7705 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		33F9185422D881DE007C7705 /* TTNewsApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TTNewsApp.xcdatamodel; sourceTree = "<group>"; };
 		33F9185622D881E0007C7705 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		33F9185922D881E0007C7705 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -43,7 +50,6 @@
 		33F9186622D881E0007C7705 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33F9186F22D88215007C7705 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		33F9187122D886E3007C7705 /* NetworkServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTest.swift; sourceTree = "<group>"; };
-		33F9187522D89001007C7705 /* CoreDataContextObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataContextObserver.swift; sourceTree = "<group>"; };
 		33F9187622D89001007C7705 /* CoreDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		33F9187722D89001007C7705 /* DataBaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBaseService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,6 +72,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		332878C022DBE078001A1DA8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				33F9187622D89001007C7705 /* CoreDataService.swift */,
+				33F9187722D89001007C7705 /* DataBaseService.swift */,
+				33F9186F22D88215007C7705 /* NetworkService.swift */,
+				332878C222DBE12C001A1DA8 /* AlertService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		332878C122DBE0F3001A1DA8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				33F9185822D881E0007C7705 /* LaunchScreen.storyboard */,
+				3339369422DB12910004B9DC /* TTNewsTableViewController.swift */,
+				3339369822DB1E3A0004B9DC /* NewsTableViewCell.swift */,
+				3339369922DB1E3A0004B9DC /* NewsTableViewCell.xib */,
+				3339369C22DB3C9A0004B9DC /* ArticleViewController.swift */,
+				3339369D22DB3C9A0004B9DC /* ArticleViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		33F9184022D881DE007C7705 = {
 			isa = PBXGroup;
 			children = (
@@ -87,15 +117,10 @@
 		33F9184B22D881DE007C7705 /* TTNewsApp */ = {
 			isa = PBXGroup;
 			children = (
-				33F9187522D89001007C7705 /* CoreDataContextObserver.swift */,
-				33F9187622D89001007C7705 /* CoreDataService.swift */,
-				33F9187722D89001007C7705 /* DataBaseService.swift */,
-				33F9186F22D88215007C7705 /* NetworkService.swift */,
+				332878C122DBE0F3001A1DA8 /* View */,
+				332878C022DBE078001A1DA8 /* Services */,
 				33F9184C22D881DE007C7705 /* AppDelegate.swift */,
-				33F9184E22D881DE007C7705 /* ViewController.swift */,
-				33F9185022D881DE007C7705 /* Main.storyboard */,
 				33F9185622D881E0007C7705 /* Assets.xcassets */,
-				33F9185822D881E0007C7705 /* LaunchScreen.storyboard */,
 				33F9185B22D881E0007C7705 /* Info.plist */,
 				33F9185322D881DE007C7705 /* TTNewsApp.xcdatamodeld */,
 			);
@@ -193,8 +218,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				33F9185A22D881E0007C7705 /* LaunchScreen.storyboard in Resources */,
+				3339369F22DB3C9A0004B9DC /* ArticleViewController.xib in Resources */,
 				33F9185722D881E0007C7705 /* Assets.xcassets in Resources */,
-				33F9185222D881DE007C7705 /* Main.storyboard in Resources */,
+				3339369B22DB1E3A0004B9DC /* NewsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,12 +238,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33F9184F22D881DE007C7705 /* ViewController.swift in Sources */,
 				33F9184D22D881DE007C7705 /* AppDelegate.swift in Sources */,
+				3339369E22DB3C9A0004B9DC /* ArticleViewController.swift in Sources */,
+				3339369A22DB1E3A0004B9DC /* NewsTableViewCell.swift in Sources */,
 				33F9187022D88215007C7705 /* NetworkService.swift in Sources */,
 				33F9185522D881DE007C7705 /* TTNewsApp.xcdatamodeld in Sources */,
+				3339369622DB12910004B9DC /* TTNewsTableViewController.swift in Sources */,
 				33F9187922D89001007C7705 /* CoreDataService.swift in Sources */,
-				33F9187822D89001007C7705 /* CoreDataContextObserver.swift in Sources */,
+				332878C322DBE12C001A1DA8 /* AlertService.swift in Sources */,
 				33F9187A22D89001007C7705 /* DataBaseService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,14 +269,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		33F9185022D881DE007C7705 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				33F9185122D881DE007C7705 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		33F9185822D881E0007C7705 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

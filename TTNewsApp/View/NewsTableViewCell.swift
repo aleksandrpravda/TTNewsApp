@@ -10,9 +10,4 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet var thumbImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var updateTimeLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 }

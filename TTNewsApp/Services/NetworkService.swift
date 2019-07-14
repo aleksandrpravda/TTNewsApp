@@ -19,17 +19,17 @@ class NetworkService {
     }
     
     func loadImage(url: String, completion: @escaping(Data?, URLResponse?, Error?) -> Void) {
-        
         let url = URL(string: "https://meduza.io\(url)")!
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
 
     private func makeRequest(by url: URL, completion: @escaping ([String: Any]?, Error?) -> Void) {
+        print("NetworkService::makeRequest::url \(url)")
         var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Accept")
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let response = response {
+            if let _ = response {
                 if let data = data {
                     do {
                         let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]

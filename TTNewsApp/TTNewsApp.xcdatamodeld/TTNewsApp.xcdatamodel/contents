@@ -10,12 +10,12 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="gallery" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Picture" syncable="YES"/>
-        <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="article" inverseEntity="Image" syncable="YES"/>
-        <relationship name="onePicture" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Picture" inverseName="article" inverseEntity="Picture" syncable="YES"/>
-        <relationship name="preferences" optional="YES" toMany="YES" minCount="2" maxCount="2" deletionRule="Nullify" ordered="YES" destinationEntity="Preference" inverseName="article" inverseEntity="Preference" syncable="YES"/>
-        <relationship name="source" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Source" inverseName="article" inverseEntity="Source" syncable="YES"/>
-        <relationship name="tag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="article" inverseEntity="Tag" syncable="YES"/>
+        <relationship name="gallery" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Picture" inverseName="pictureArticle" inverseEntity="Picture" syncable="YES"/>
+        <relationship name="image" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Image" inverseName="article" inverseEntity="Image" syncable="YES"/>
+        <relationship name="onePicture" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Picture" inverseName="article" inverseEntity="Picture" syncable="YES"/>
+        <relationship name="preferences" optional="YES" toMany="YES" minCount="2" maxCount="2" deletionRule="Cascade" ordered="YES" destinationEntity="Preference" inverseName="article" inverseEntity="Preference" syncable="YES"/>
+        <relationship name="source" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Source" inverseName="article" inverseEntity="Source" syncable="YES"/>
+        <relationship name="tag" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Tag" inverseName="article" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Document" representedClassName="Document" syncable="YES" codeGenerationType="class">
         <attribute name="documentType" optional="YES" attributeType="String" syncable="YES"/>
@@ -30,11 +30,11 @@
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="withBanners" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="document" inverseEntity="Image" syncable="YES"/>
-        <relationship name="page" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Page" inverseName="documents" inverseEntity="Page" syncable="YES"/>
-        <relationship name="preferences" optional="YES" toMany="YES" minCount="2" maxCount="2" deletionRule="Nullify" ordered="YES" destinationEntity="Preference" inverseName="document" inverseEntity="Preference" syncable="YES"/>
-        <relationship name="source" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Source" inverseName="document" inverseEntity="Source" syncable="YES"/>
-        <relationship name="tag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="document" inverseEntity="Tag" syncable="YES"/>
+        <relationship name="image" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Image" inverseName="document" inverseEntity="Image" syncable="YES"/>
+        <relationship name="page" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Page" inverseName="documents" inverseEntity="Page" syncable="YES"/>
+        <relationship name="preferences" optional="YES" toMany="YES" minCount="2" maxCount="2" deletionRule="Cascade" ordered="YES" destinationEntity="Preference" inverseName="document" inverseEntity="Preference" syncable="YES"/>
+        <relationship name="source" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Source" inverseName="document" inverseEntity="Source" syncable="YES"/>
+        <relationship name="tag" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Tag" inverseName="document" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Image" representedClassName="Image" syncable="YES" codeGenerationType="class">
         <attribute name="caption" optional="YES" attributeType="String" syncable="YES"/>
@@ -53,16 +53,16 @@
         <attribute name="wh_810_540_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="wh_1245_500_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="wh_1245_710_url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="image" inverseEntity="Article" syncable="YES"/>
-        <relationship name="document" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="image" inverseEntity="Document" syncable="YES"/>
-        <relationship name="preference" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Preference" inverseName="image" inverseEntity="Preference" syncable="YES"/>
-        <relationship name="tag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="image" inverseEntity="Tag" syncable="YES"/>
+        <relationship name="article" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Article" inverseName="image" inverseEntity="Article" syncable="YES"/>
+        <relationship name="document" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Document" inverseName="image" inverseEntity="Document" syncable="YES"/>
+        <relationship name="preference" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Preference" inverseName="image" inverseEntity="Preference" syncable="YES"/>
+        <relationship name="tag" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Tag" inverseName="image" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Page" representedClassName="Page" syncable="YES" codeGenerationType="class">
         <attribute name="collection" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
         <attribute name="hasNext" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="number" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="documents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Document" inverseName="page" inverseEntity="Document" syncable="YES"/>
+        <relationship name="documents" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Document" inverseName="page" inverseEntity="Document" syncable="YES"/>
     </entity>
     <entity name="Picture" representedClassName="Picture" syncable="YES" codeGenerationType="class">
         <attribute name="actualHeight" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -75,7 +75,8 @@
         <attribute name="originalWidth" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="retina" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="smallURL" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="onePicture" inverseEntity="Article" syncable="YES"/>
+        <relationship name="article" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Article" inverseName="onePicture" inverseEntity="Article" syncable="YES"/>
+        <relationship name="pictureArticle" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Article" inverseName="gallery" inverseEntity="Article" syncable="YES"/>
     </entity>
     <entity name="Preference" representedClassName="Preference" syncable="YES" codeGenerationType="class">
         <attribute name="adsShow" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -83,36 +84,36 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reactionsShow" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="preferences" inverseEntity="Article" syncable="YES"/>
-        <relationship name="document" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="preferences" inverseEntity="Document" syncable="YES"/>
-        <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="preference" inverseEntity="Image" syncable="YES"/>
-        <relationship name="tag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="preference" inverseEntity="Tag" syncable="YES"/>
+        <relationship name="article" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Article" inverseName="preferences" inverseEntity="Article" syncable="YES"/>
+        <relationship name="document" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Document" inverseName="preferences" inverseEntity="Document" syncable="YES"/>
+        <relationship name="image" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Image" inverseName="preference" inverseEntity="Image" syncable="YES"/>
+        <relationship name="tag" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Tag" inverseName="preference" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Source" representedClassName="Source" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="quote" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="trust" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="source" inverseEntity="Article" syncable="YES"/>
-        <relationship name="document" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="source" inverseEntity="Document" syncable="YES"/>
+        <relationship name="article" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Article" inverseName="source" inverseEntity="Article" syncable="YES"/>
+        <relationship name="document" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Document" inverseName="source" inverseEntity="Document" syncable="YES"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="show" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="article" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Article" inverseName="tag" inverseEntity="Article" syncable="YES"/>
-        <relationship name="document" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="tag" inverseEntity="Document" syncable="YES"/>
-        <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="tag" inverseEntity="Image" syncable="YES"/>
-        <relationship name="preference" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Preference" inverseName="tag" inverseEntity="Preference" syncable="YES"/>
+        <relationship name="article" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Article" inverseName="tag" inverseEntity="Article" syncable="YES"/>
+        <relationship name="document" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Document" inverseName="tag" inverseEntity="Document" syncable="YES"/>
+        <relationship name="image" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Image" inverseName="tag" inverseEntity="Image" syncable="YES"/>
+        <relationship name="preference" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Preference" inverseName="tag" inverseEntity="Preference" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Article" positionX="-40.1015625" positionY="254.0546875" width="128" height="270"/>
         <element name="Document" positionX="452.171875" positionY="265.33984375" width="128" height="300"/>
-        <element name="Image" positionX="-304.55078125" positionY="166.4296875" width="128" height="343"/>
-        <element name="Page" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Image" positionX="-304.55078125" positionY="166.4296875" width="128" height="345"/>
+        <element name="Page" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Picture" positionX="-193.23046875" positionY="137.01953125" width="128" height="225"/>
         <element name="Preference" positionX="15.94140625" positionY="624.5625" width="129.71484375" height="180"/>
         <element name="Source" positionX="265.76953125" positionY="173.5859375" width="128" height="135"/>
-        <element name="Tag" positionX="190.6640625" positionY="457.91796875" width="128" height="148"/>
-        <element name="Article" positionX="-40.1015625" positionY="254.0546875" width="128" height="268"/>
-        <element name="Picture" positionX="-193.23046875" positionY="137.01953125" width="128" height="208"/>
+        <element name="Tag" positionX="190.6640625" positionY="457.91796875" width="128" height="150"/>
     </elements>
 </model>

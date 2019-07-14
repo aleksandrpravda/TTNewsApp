@@ -7,12 +7,23 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
-
+    var alertService: AlertService?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        print(paths[0])
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        if let window = self.window {
+            let navigationController = UINavigationController()
+            alertService = AlertService(navigationController: navigationController)
+            window.rootViewController = navigationController
+            let controller = TTNewsTableViewController(databaseService: CoreDataService(persistentContainer: self.persistentContainer, networkService: NetworkService()))
+            navigationController.pushViewController(controller, animated: false)
+            window.makeKeyAndVisible()
+        }
+        
         return true
     }
     
