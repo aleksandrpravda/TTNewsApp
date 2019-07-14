@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsTableViewCellIdentifire" rowHeight="130" id="KGk-i7-Jjw" customClass="NewsTableViewCell" customModule="TTNewsApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="314" height="130"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="314" height="129.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NQ4-i1-WuF">
+                        <rect key="frame" x="0.0" y="0.0" width="314" height="129.5"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 часа назад" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jap-kr-4gM">
+                        <rect key="frame" x="20" y="111.5" width="274" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="HWZ-8u-fpw"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="новости" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQT-Dp-43j">
+                        <rect key="frame" x="20" y="25.5" width="274" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="kdp-ck-2Rf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="«Самый красивый депутат» Кирова подал заявление в полицию. Его оскорбил мем с призывом записываться к нему на «ноготочки»" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="AwF-KS-ame">
+                        <rect key="frame" x="20" y="43.5" width="274" height="60"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AY6-8c-gs6">
+                        <rect key="frame" x="147" y="55" width="20" height="20"/>
+                    </activityIndicatorView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="AY6-8c-gs6" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="1Ig-dt-3Xv"/>
+                    <constraint firstAttribute="bottom" secondItem="NQ4-i1-WuF" secondAttribute="bottom" id="AIz-Zo-zDz"/>
+                    <constraint firstItem="AwF-KS-ame" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="BwP-Oo-eGK"/>
+                    <constraint firstItem="jap-kr-4gM" firstAttribute="top" secondItem="AwF-KS-ame" secondAttribute="bottom" constant="8" id="C7z-5k-22n"/>
+                    <constraint firstItem="AwF-KS-ame" firstAttribute="height" secondItem="cQT-Dp-43j" secondAttribute="height" multiplier="6" id="EgT-EE-n9j"/>
+                    <constraint firstAttribute="trailing" secondItem="AwF-KS-ame" secondAttribute="trailing" constant="20" id="HZV-fY-SMJ"/>
+                    <constraint firstItem="jap-kr-4gM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="QY1-M4-xQa"/>
+                    <constraint firstAttribute="bottom" secondItem="jap-kr-4gM" secondAttribute="bottom" constant="8" id="Qhf-6z-i4c"/>
+                    <constraint firstItem="NQ4-i1-WuF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Sca-BR-qZW"/>
+                    <constraint firstItem="AY6-8c-gs6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="WmK-Al-6xB"/>
+                    <constraint firstItem="cQT-Dp-43j" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Xu0-mh-WSs"/>
+                    <constraint firstAttribute="trailing" secondItem="cQT-Dp-43j" secondAttribute="trailing" constant="20" id="coN-Bq-Ih2"/>
+                    <constraint firstAttribute="trailing" secondItem="jap-kr-4gM" secondAttribute="trailing" constant="20" id="fRx-85-OuN"/>
+                    <constraint firstAttribute="trailing" secondItem="NQ4-i1-WuF" secondAttribute="trailing" id="lm8-dB-qyz"/>
+                    <constraint firstItem="AwF-KS-ame" firstAttribute="top" secondItem="cQT-Dp-43j" secondAttribute="bottom" constant="8" id="nM9-hL-jH4"/>
+                    <constraint firstItem="NQ4-i1-WuF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="pl5-J7-b4y"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="activityIndicator" destination="AY6-8c-gs6" id="e7w-1O-Cms"/>
+                <outlet property="thumbImageView" destination="NQ4-i1-WuF" id="2Rn-AX-rbe"/>
+                <outlet property="titleLabel" destination="AwF-KS-ame" id="k4j-rQ-hf0"/>
+                <outlet property="typeLabel" destination="cQT-Dp-43j" id="NV3-S4-1cZ"/>
+                <outlet property="updateTimeLabel" destination="jap-kr-4gM" id="Aj1-cj-TCH"/>
+            </connections>
+            <point key="canvasLocation" x="-323.1884057971015" y="-19.419642857142858"/>
+        </tableViewCell>
+    </objects>
+</document>

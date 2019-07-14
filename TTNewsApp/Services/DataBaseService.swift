@@ -7,6 +7,6 @@ import CoreData
 protocol DataBaseService {
     init(persistentContainer: NSPersistentContainer, networkService: NetworkService)
     func fetchNews(page: Int, completion: @escaping(Error?) -> Void)
-//    func fetchCompanies(completion: @escaping(Error?) -> Void)
-//    func updateCompany(by identifire: String, completion: @escaping(Error?) -> Void)
+    func fetchArticle(url: String, completion: @escaping(Error?) -> Void)
+    func loadImage(url: String, completion: @escaping(Data?, URLResponse?, Error?) -> Void)
 }

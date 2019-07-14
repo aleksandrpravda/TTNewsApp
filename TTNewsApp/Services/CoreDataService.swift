@@ -14,16 +14,24 @@ class CoreDataService: DataBaseService {
         self.networkService = networkService
     }
     
+    func loadImage(url: String, completion: @escaping(Data?, URLResponse?, Error?) -> Void) {
+        self.networkService.loadImage(url: url, completion: completion)
+    }
+    
     func fetchNews(page: Int, completion: @escaping(Error?) -> Void) {
         self.networkService.news(by: page) { jsonDictionary, error in
             if let error = error {
-                completion(error)
+                DispatchQueue.main.async {
+                    completion(error)
+                }
                 return
             }
             
             guard let jsonDictionary = jsonDictionary else {
                 let error = NSError(domain: "", code: -1, userInfo: nil)
-                completion(error)
+                DispatchQueue.main.async {
+                    completion(error)
+                }
                 return
             }
             
@@ -35,20 +43,26 @@ class CoreDataService: DataBaseService {
             if !success {
                 error = NSError(domain: "", code: -2, userInfo: nil)//TODO add error
             }
-            completion(error)
+            DispatchQueue.main.async {
+                completion(error)
+            }
         }
     }
     
     func fetchArticle(url: String, completion: @escaping(Error?) -> Void) {
         self.networkService.news(by: url) { jsonDictionary, error in
             if let error = error {
-                completion(error)
+                DispatchQueue.main.async {
+                    completion(error)
+                }
                 return
             }
             
             guard let jsonDictionary = jsonDictionary else {
                 let error = NSError(domain: "", code: -1, userInfo: nil)
-                completion(error)
+                DispatchQueue.main.async {
+                    completion(error)
+                }
                 return
             }
             
@@ -60,7 +74,9 @@ class CoreDataService: DataBaseService {
             if !success {
                 error = NSError(domain: "", code: -2, userInfo: nil)//TODO add error
             }
-            completion(error)
+            DispatchQueue.main.async {
+                completion(error)
+            }
         }
     }
     
@@ -68,7 +84,7 @@ class CoreDataService: DataBaseService {
         var successfull = false
         taskContext.performAndWait {
             let matchingArticleRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Article")
-            matchingArticleRequest.predicate = NSPredicate(format: "url in %@", argumentArray: [url])
+            matchingArticleRequest.predicate = NSPredicate(format: "url == %@", url)
             let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: matchingArticleRequest)
             batchDeleteRequest.resultType = .resultTypeObjectIDs
             
@@ -84,7 +100,7 @@ class CoreDataService: DataBaseService {
                 return
             }
             
-            guard let _ = createPage(from: jsonDictionary, in: taskContext) else {
+            guard let _ = createArticle(from: jsonDictionary, in: taskContext) else {
                 print("Error: Failed to create a new Article object!")
                 return
             }
@@ -107,7 +123,7 @@ class CoreDataService: DataBaseService {
         taskContext.performAndWait {
             let matchingPageRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Page")
             if pageNumber > 0 {
-                matchingPageRequest.predicate = NSPredicate(format: "number in %@", argumentArray: [pageNumber])
+                matchingPageRequest.predicate = NSPredicate(format: "number == %i", Int32(pageNumber))
             }
             let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: matchingPageRequest)
             batchDeleteRequest.resultType = .resultTypeObjectIDs
@@ -124,10 +140,11 @@ class CoreDataService: DataBaseService {
                 return
             }
             
-            guard let _ = createPage(from: jsonDictionary, in: taskContext) else {
+            guard let page = createPage(from: jsonDictionary, in: taskContext) else {
                 print("Error: Failed to create a new Page object!")
                 return
             }
+            page.number = Int32(pageNumber)
 
             if taskContext.hasChanges {
                 do {
@@ -155,13 +172,13 @@ class CoreDataService: DataBaseService {
         article.desc = rootJSON["description"] as? String
         article.pushed = rootJSON["pushed"] as? Bool ?? false
         
-        if let gallery = rootJSON["gallery"] as? [[String: Any]] {
-            for pictureJSON in gallery {
-                if let picture = createPicture(from: pictureJSON, in: taskContext) {
-                    article.addToGallery(picture)
-                }
-            }
-        }
+//        if let gallery = rootJSON["gallery"] as? [[String: Any]] {
+//            for pictureJSON in gallery {
+//                if let picture = createPicture(from: pictureJSON, in: taskContext) {
+//                    article.addToGallery(picture)
+//                }
+//            }
+//        }
         
         if let pictureJSON = rootJSON["one_picture"] as? [String: Any], let picture = createPicture(from: pictureJSON, in: taskContext) {
             picture.article = article
