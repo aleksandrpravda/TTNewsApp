@@ -24,7 +24,6 @@ class NetworkService {
     }
 
     private func makeRequest(by url: URL, completion: @escaping ([String: Any]?, Error?) -> Void) {
-        print("NetworkService::makeRequest::url \(url)")
         var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Accept")
